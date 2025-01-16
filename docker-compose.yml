@@ -1,0 +1,9 @@
+services:
+  postgress:
+    image: "bitnami/postgress:lastest"
+    ports:
+      -"5432:5432"
+    environment:
+      POSTGRES_USERS: postgress
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: rocketlog
