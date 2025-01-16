@@ -29,10 +29,15 @@ function ensureAuthenticated(
     ) as TokenPayload;
 
     request.user = {
-        id: user_id,
-        role,
-    }
+      id: user_id,
+      role,
+    };
+
+    return next();
+    
   } catch (error) {
     throw new AppError("Invalid JWT token", 401);
   }
 }
+
+export { ensureAuthenticated };
