@@ -1,6 +1,6 @@
 services:
   postgress:
-    image: "bitnami/postgress:lastest"
+    image: "bitnami/postgresql:lastest"
     ports:
       -"5432:5432"
     environment:
