@@ -4,6 +4,6 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USERS: postgress
+      POSTGRES_USERS: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: rocketlog
