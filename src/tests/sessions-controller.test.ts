@@ -1,9 +1,15 @@
 import request from "supertest";
 import { app } from "@/app";
 import { string } from "zod";
+import { prisma } from "@/database/prisma";
 
 describe("SessionsController", () => {
   let user_id: string;
+
+    afterAll(async () => {
+      await prisma.user.delete({ where: { id: user_id } });
+    });
+  
 
   it("should authenticate a and get acess token", async () => {
     const userResponse = await request(app).post("/users").send({
@@ -20,6 +26,6 @@ describe("SessionsController", () => {
     });
 
     expect(sessionResponse.status).toBe(200);
-    expect(sessionResponse.body.token).toEqual(expect.any(string));
+    expect(sessionResponse.body.token).toEqual(expect.any(String));
   });
 });
