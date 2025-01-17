@@ -9,7 +9,6 @@ interface TokenPayload {
 }
 
 function ensureAuthenticated(
-  error: any,
   request: Request,
   response: Response,
   next: NextFunction
@@ -34,10 +33,9 @@ function ensureAuthenticated(
     };
 
     return next();
-    
   } catch (error) {
     throw new AppError("Invalid JWT token", 401);
   }
-}
+};
 
 export { ensureAuthenticated };
