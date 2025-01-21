@@ -28,6 +28,10 @@ class DeliveryLogsController {
       throw new AppError("this order has already been delivered", 401)
     }
 
+    if(!delivery){
+      return response.status(404).json({message: "delivery is not found"})
+    }
+
     await prisma.deliveryLog.create({
       data: {
         deliveryId: delivery_id,
