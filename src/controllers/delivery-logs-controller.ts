@@ -9,9 +9,9 @@ class DeliveryLogsController {
       delivery_id: z.string().uuid(),
       description: z.string(),
     });
-
+    
     const { delivery_id, description } = bodySchema.parse(request.body);
-
+    
     const delivery = await prisma.delivery.findUnique({
       where: { id: delivery_id },
     });
@@ -27,10 +27,7 @@ class DeliveryLogsController {
     if(delivery.status === "delivered"){
       throw new AppError("this order has already been delivered", 401)
     }
-
-    if(!delivery){
-      return response.status(404).json({message: "delivery is not found"})
-    }
+    
 
     await prisma.deliveryLog.create({
       data: {
